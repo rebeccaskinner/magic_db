@@ -1,0 +1,39 @@
+BUILDING:
+
+To compile you'll need Haskell (obviously), as well as the Network.HTTP and
+TagSoup libraries. Both are available through cabal if they aren't in your
+package manager.
+
+If you need to get them through cabal, install cabal through your package
+manager then do
+
+cabal update
+cabal install http
+cabal install tagsoup
+
+then compile with
+
+ghc --make -O3 cardInfo.hs
+
+or, if you want to use multiple cores you can do
+
+ghc --make -O3 -threaded cardInfo.hs
+
+however we're mostly bound by the network and not wanting to open up too many
+concurrent connections and killing our network (or looking like a DOS), so
+there isn't a tremendous amount of benefit.  You can play around with the
+"threadMax" and "threadWaitTime" if you want to eek out better performance.
+
+USING:
+
+once you've built the program just run it with
+
+./cardInfo <min> <max>
+
+where min is the card you want to start with, and max is the card you want to
+end with.  Everything is written to stdout so you probably want to redirect to
+a file.
+
+If you want everything in a cards.out file use
+
+./cardInfo 1 222923 > cards.out
