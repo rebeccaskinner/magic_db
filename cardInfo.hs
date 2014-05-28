@@ -1,4 +1,4 @@
-import System (getArgs)
+import System.Environment (getArgs)
 import System.IO
 import System.IO.Unsafe
 import Network.HTTP -- cabal install HTTP
